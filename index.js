@@ -1,12 +1,31 @@
+/**
+ * @file
+ * @author Jose Lagoa Corral
+ * @version 1.0
+ */
 
+ /**
+  * @class Almacen
+  * @param {number} capacidad
+  * @prop {Array} cds
+  * @prop {Array} dvds
+  */
 class Almacen {
-    //Constructor de la clase almacén, recibe la cantidad de elementos (cds o dvds) que puede haber. 
+    //Constructor de la clase almacén, recibe la cantidad de elementos (cds o dvds) que puede haber.
+    /**
+     * @param {number} capacidad 
+     */ 
     constructor(capacidad) {
         this.capacidad = capacidad;
         this.cds = [];
         this.dvds = [];
     }
     //El método introducir recibe un objeto y si hay sitio, tras comprobar si es de tipo cd o dvd lo mete dentro de la colección (Array) correspondiente. Devuelve 0 si no puede meterlo o en caso contrario el número de unidades introducidas.
+    /**
+     * 
+     * @param {*} objeto 
+     * @return 
+     */
     introducir(objeto) {
         if (this.capacidad == 0) {
             console.log("almacen lleno")
@@ -38,6 +57,11 @@ class Almacen {
         }
     }
     //Este método recibe una cadena de texto y busca dentro del almacén si existe un cd o dvd con ese título o ese autor, si lo encuentra devulve un objeto con el título, autor, unidades y precio. Si no lo encuentra devuelve null
+    /**
+     * @description
+     * @param {string} tituloautor 
+     * @returns 
+     */
     buscar(tituloautor) {
         for (let obj of this.cds) {
             if ((tituloautor == obj.titulo) || (tituloautor == obj.autor)) {
@@ -64,6 +88,12 @@ class Almacen {
         return null;
     }
     //El método comprar, recibe una cadena de texto con un título y la cantidad de dinero. Devuelve -1 si no puede comprarlo y la cantidad de dinero que le sobra si lo puede comprar.
+    /**
+     * 
+     * @param {string} titulo Titulo del cd, dvd que queremos comprar
+     * @param {number} dinero CAntidad de dinero con la que el que lo va a comprar cuenta
+     * @returns 
+     */
     
     comprar(titulo, dinero) {
         for (let obj of this.cds) {
@@ -94,13 +124,13 @@ class Almacen {
    
 }
 
-/**************Empieza el Programa******************** */
+/*******************Empieza el Programa*********************/
 let fs=require("fs");
 let texto=fs.readFileSync("catalogo.json","utf-8");
 let catalogo=JSON.parse(texto);
 
 
-let alm1 = new Almacen(150);
+let alm1 = new Almacen(100);
 for(let elemento of catalogo){
     console.log(alm1.introducir(elemento))
 }
